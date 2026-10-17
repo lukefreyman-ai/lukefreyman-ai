@@ -1,34 +1,33 @@
-# Luke Freyman - risk & fraud analytics portfolio
+# Luke Freyman
 
-M.S. FinTech candidate targeting Summer 2027 analyst internships in Corporate Risk, Fraud, Model Risk and Data/BI.
-Seven runnable projects - every number in every README is produced by the code in that repo.
-GitHub: https://github.com/lukefreyman-ai · LinkedIn: https://linkedin.com/in/luke-freyman-a22ab7249
+Risk and fraud analytics. M.S. FinTech at UCF, graduating December 2027.
+Open to 2027 analyst internships in fraud, credit risk, model risk and data.
 
-| project | one line | headline numbers | stack |
-|---|---|---|---|
-| [fraud-detection-pipeline](https://github.com/lukefreyman-ai/fraud-detection-pipeline) | Card-fraud model with cost-tuned thresholds, velocity features, SHAP and an analyst review app | 81% recall at 27 alerts/10k txns; PR-AUC 0.79; cost $3,166 vs $3,457 baseline | Python, LightGBM, scikit-learn, SHAP, Streamlit |
-| [aml-transaction-monitoring](https://github.com/lukefreyman-ai/aml-transaction-monitoring) | Rules-based AML monitoring engine on labelled synthetic data with FP analysis and threshold tuning | 518,492 txns, 8 SQL rules; precision 53% -> 83% at 39 alerts/month | Python, DuckDB SQL, Power BI star schema |
-| [model-risk-monitoring](https://github.com/lukefreyman-ai/model-risk-monitoring) | SR 11-7-style validation & monitoring toolkit around a credit scorecard | PSI 0.36 red / CSI util 0.40 detected; KS 0.52 held; HTML + analyst report | Python, statsmodels, scikit-learn, Jinja2 |
-| [credit-risk-scorecard](https://github.com/lukefreyman-ai/credit-risk-scorecard) | WOE/IV logistic scorecard on Give Me Some Credit | AUC 0.857, Gini 0.713, KS 0.557; 600 @ 50:1, PDO 20 | Python, pandas, statsmodels |
-| [medicare-claims-denial-analysis](https://github.com/lukefreyman-ai/medicare-claims-denial-analysis) | NCCI edit engine over 780k Medicare outpatient claims | 4.1 % of claims violate hard edits; ~$1.22 M exposure; 41 % from one code pair | Python, pandas, CMS DE-SynPUF + NCCI |
-| [complaint-triage](https://github.com/lukefreyman-ai/complaint-triage) | LLM complaint classifier benchmarked on CFPB-labelled complaints | 76.5% on a balanced 9-class set (baseline 11%); negative prompt result kept | Python, Anthropic API (Haiku 4.5), Streamlit |
-| [kalshi-edge](https://github.com/lukefreyman-ai/kalshi-edge) | Prediction-market scanner + paper ledger with risk limits and a dashboard | 4,453 opportunities/scan; fee-adjusted; $5/$50/10 % limits | Python, SQLite, Three.js dashboard |
+Lake Mary, Florida · [LinkedIn](https://linkedin.com/in/luke-freyman-a22ab7249)
 
-## What ties them together
+## Projects
 
-- **Decisions, not just metrics.** Thresholds are chosen from a cost matrix (fraud), an analyst budget (AML) or a
-  RAG policy (model risk) - and each README says what the number means for the team that has to act on it.
-- **Honest evaluation.** Chronological splits, majority-class baselines, withdrawn hypotheses and negative results are
-  reported, not hidden. Limitations sections are written to be said out loud in an interview.
-- **Reproducible from a clean clone.** `make setup && make run` (or `python run.py`) regenerates every result; each
-  repo has tests, type hints and docstrings; results files are committed so the README numbers are traceable.
+Every number in the table below is produced by the code in that repo. None of it is typed in by hand.
 
-## Suggested resume header line
+| Project | What it does | Result |
+|---|---|---|
+| [fraud-detection-pipeline](https://github.com/lukefreyman-ai/fraud-detection-pipeline) | Card fraud model. The alert threshold is set from what a false alarm and a missed fraud each cost. | Catches 81% of fraud at 27 alerts per 10,000 transactions. Expected cost $3,166 against $3,457 for the next best model. |
+| [aml-transaction-monitoring](https://github.com/lukefreyman-ai/aml-transaction-monitoring) | Eight SQL rules over 518,492 transactions, tuned to how many alerts an analyst can actually clear. | Precision 53% to 83%. 39 alerts a month instead of 58, with all 190 suspicious customers still caught. |
+| [model-risk-monitoring](https://github.com/lukefreyman-ai/model-risk-monitoring) | Watches a deployed credit scorecard for drift and writes the validation report. | Flagged red: the score distribution moved past the 0.25 limit. Ranking power held at 0.72 Gini. |
+| [credit-risk-scorecard](https://github.com/lukefreyman-ai/credit-risk-scorecard) | Seven-variable scorecard a lender could explain to a declined applicant. | AUC 0.857, Gini 0.713. Default rate runs from 54.2% in the lowest score band to 0.46% in the highest. |
+| [medicare-claims-denial-analysis](https://github.com/lukefreyman-ai/medicare-claims-denial-analysis) | Runs CMS billing edits across 780,000 Medicare outpatient claims. | 4.1% of claims break a hard edit, roughly $1.22M at risk. 41% of that traces to a single code pair. |
+| [complaint-triage](https://github.com/lukefreyman-ai/complaint-triage) | Measures how accurately an LLM sorts real CFPB complaints into nine categories. | 76.5% on a balanced set where guessing the largest class gets 11%. A prompt I expected to help scored 2.8 points worse, and that is in the README. |
+| [tsmom-etf](https://github.com/lukefreyman-ai/tsmom-etf) | Momentum strategy on 10 ETFs, 2005 to 2026, with a paper-trading executor. | Sharpe 0.78 against 0.64 for SPY. Worst drawdown -11.6% against -55.2%. It does not beat SPY on return, and the README says so. |
 
-*Risk & fraud analytics: fraud modelling (LightGBM/SHAP), AML transaction monitoring (SQL rules, FP tuning), model
-validation (PSI/CSI/KS, SR 11-7 reporting), credit scorecards (WOE/IV), claims payment integrity, LLM evaluation.*
+## How these are built
 
-## Interview prep
+- Thresholds come from a cost or an analyst budget, not from maximising a metric.
+- Results that went the wrong way stay in the README.
+- Results files are committed, so every number in a README traces back to the run that produced it.
 
-Each repo contains an `INTERVIEW_GUIDE.md` (what it does in three sentences, why each decision, what I'd change,
-five likely questions with honest answers, numbers to know) and this folder holds `RESUME_BULLETS.md`.
+## Now
+
+A pipeline that reads every SEC Form 13F filing from 2010 to 2014 and reports institutional
+ownership per company. 30 million holdings rows parsed. The 2013 Q4 output matches the SEC's
+own data set on all 1,584,855 rows. The repo is private while the research is in progress,
+and I can share it on request.
